@@ -1,0 +1,185 @@
+* {
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+body {
+  background: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav ul {
+  list-style: none;
+  list-style-image: none;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  margin-top: 10vh;
+}
+
+#menu_wrapper {
+  max-width: 1170px;
+  margin: 0 auto;
+  background-color: #f4f4f4;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+#menu {
+  height: auto;
+  position: relative;
+}
+
+#menu:after {
+  height: 3px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: '';
+  background: -webkit-linear-gradient(to left, #ff0000, #ff8a00c2, #dbf72c9c, #00ff57, #00b2ff, #0400d2, #fa00ff, #ff0000);
+  background: linear-gradient(to left, #ff0000, #ff8a00c2, #dbf72c9c, #00ff57, #00b2ff, #0400d2, #fa00ff, #ff0000);
+}
+
+#menu > ul {
+  display: flex;
+}
+
+#menu > ul > li {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  padding: 2px 15px;
+}
+
+#menu > ul > li:not(.has-submenu) {
+  margin-right: 15px;
+}
+
+#menu > ul > li a {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333;
+  text-transform: lowercase;
+}
+
+#menu > ul > li:last-child {
+  margin: 0;
+  margin-left: auto;
+}
+
+#menu > ul > li:last-child a {
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 10px 0;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #ff4242;
+  display: block;
+}
+
+#menu > ul > li.has-submenu span.arrow {
+  display: inline-block;
+  width: 16px;
+  height: 7px;
+  margin-left: 10px;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 7'%3E%3Cpath fill='%23000' d='M8 6.5a.47.47 0 0 1-.35-.15l-4.5-4.5c-.2-.2-.2-.51 0-.71c.2-.2.51-.2.71 0l4.15 4.15l4.14-4.14c.2-.2.51-.2.71 0c.2.2.2.51 0 .71l-4.5 4.5c-.1.1-.23.15-.35.15Z'/%3E%3C/svg%3E");
+  background-color: currentColor;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  text-indent: 100%;
+}
+
+#menu > ul > li.has-submenu.active span.arrow {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 7'%3E%3Cpath fill='%23000' d='M12.5 6a.47.47 0 0 1-.35-.15L8 1.71L3.85 5.85c-.2.2-.51.2-.71 0c-.2-.2-.2-.51 0-.71L7.65.65c.2-.2.51-.2.71 0l4.5 4.5c.2.2.2.51 0 .71c-.1.1-.23.15-.35.15Z'/%3E%3C/svg%3E");
+}
+
+#menu > ul > li.has-submenu.active span.marker {
+  display: block;
+}
+
+#menu > ul > li.has-submenu span.marker {
+  height: 13px;
+  position: absolute;
+  width: 100%;
+  top: calc(100% - 3px);
+  left: 160px;
+  text-indent: -100%;
+  z-index: 999;
+  display: none;
+}
+
+#menu > ul > li.has-submenu span.marker:after {
+  width: 28px;
+  height: 28px;
+  background: #f4f4f4;
+  transform: rotate(45deg);
+  content: '';
+  display: block;
+  position: absolute;
+  left: 30px;
+  top: 10px;
+}
+
+#menu > ul > li.has-submenu.active ul.submenu {
+  display: flex;
+}
+
+#menu ul.submenu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: 100%;
+  display: none;
+  column-gap: 115px;
+  padding: 30px 0;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  z-index: 999;
+}
+
+#menu ul.submenu > li:first-child {
+  padding-left: 30px;
+}
+
+#menu ul.submenu a {
+  font-family: 'Inter', sans-serif;
+  color: #000;
+  text-transform: none;
+}
+
+#menu ul.submenu > li > a {
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+#menu ul.submenu > li ul {
+  margin-top: 10px;
+}
+
+#menu ul.submenu > li ul li {
+  line-height: 1.2;
+}
+
+#menu ul.submenu > li ul li a {
+  font-weight: 400;
+  font-size: 13px;
+}

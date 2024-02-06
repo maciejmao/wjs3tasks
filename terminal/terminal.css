@@ -1,0 +1,145 @@
+* {
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+body {
+  background: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+::placeholder {
+  color: #8d8d8d;
+}
+
+#container {
+  margin-top: 10vh;
+}
+
+#terminal_wrapper {
+  background-color: #fff;
+  max-width: 726px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#terminal_header {
+  background-color: #3e3e3e;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+  padding: 0 10px;
+  height: 20px;
+}
+
+#terminal_header #terminal_shapes {
+  background-color: #3e3e3e;
+  display: flex;
+  position: absolute;
+}
+
+#terminal_shapes .circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+  display: block;
+}
+
+#terminal_shapes .circle:nth-child(1) {
+  background: #e52a2a;
+}
+
+#terminal_shapes .circle:nth-child(2) {
+  background: #e5bc2a;
+}
+
+#terminal_shapes .circle:nth-child(3) {
+  background: #2ae53d;
+}
+
+#terminal_header #terminal_title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  color: #c2c2c2;
+  width: 100%;
+}
+
+#terminal_content {
+  background-color: #131212;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 20px;
+  padding-bottom: 0;
+}
+
+#terminal_output {
+  height: 254px;
+  overflow: auto;
+}
+
+#terminal_output * {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+#terminal_output span {
+  display: block;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin: 0;
+}
+
+#terminal_input {
+  background-color: #3e3e3e;
+  border-radius: 5px;
+  margin-top: 20px;
+  height: 40px;
+  display: flex;
+}
+
+input#terminal {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: #d9d9d9;
+  background: transparent;
+  padding: 0 15px;
+}
+
+#terminal_hints .hidden {
+  visibility: hidden;
+}
+
+#terminal_hints {
+  padding: 4px 0 4px 15px;
+}
+
+#terminal_hints * {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: #fff;
+}
