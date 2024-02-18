@@ -19,8 +19,11 @@
   <body>
     <div id="container">
       <div id="combo_wrapper">
-        <input id="combo" type="text" name="combo" placeholder="Search" value="" autocomplete="off" />
-        <span class="spinner">loader</span>
+        <form id="combo_form">
+          <input id="combo" type="text" name="combo" placeholder="Search" value="" autocomplete="off" />
+          <button class="btn-submit" type="submit">Submit</button>
+          <span class="spinner">loader</span>
+        </form>
         <div id="results_wrapper">
           <span class="marker">result marker</span>
           <div id="results"></div>

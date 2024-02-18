@@ -1,33 +1,50 @@
-let started = false;
+const dynamic = false; // switch - search as you type functionality
 const combo = document.body.querySelector('#combo');
-const output = document.body.querySelector('#results');
+const form = combo.parentNode;
+const wrapper = combo.parentNode.parentNode;
+const output = wrapper.lastElementChild.lastElementChild;
 const xhr = new XMLHttpRequest();
+let started = false;
 
-combo.addEventListener('input', searchInit);
-combo.addEventListener('blur', resetSearch);
+combo.addEventListener('input', searchInput);
+form.addEventListener('submit', searchSubmit);
 addListeners(xhr);
 
-function searchInit(e) {
-  e.target.value = e.target.value.trim();
-  const phrase = e.target.value;
-
-  if (phrase) this.parentNode.classList.add('action');
-  else this.parentNode.classList.remove('action');
-
-  if (started) xhr.abort();
-  if (phrase && phrase.length > 1) {
-    xhr.open('GET', 'https://dummyjson.com/products/search?q=' + phrase + '&limit=5&delay=1000', true);
-    xhr.send();
-  } else {
-    if (combo.parentNode.classList.contains('show')) combo.parentNode.classList.remove('show');
+function searchInput(e) {
+  const value = searchInit(e);
+  if (dynamic) {
+    let timeout;
+    if (started) xhr.abort();
+    if (timeout) clearTimeout(timeout);
+    if (value && value.length > 1) {
+      timeout = setTimeout(function () {
+        searchXhr(value);
+      }, 500);
+    }
   }
 }
 
-function resetSearch(e) {
-  e.target.value = '';
-  if (started) xhr.abort();
-  if (combo.parentNode.classList.contains('show')) combo.parentNode.classList.remove('show');
-  if (combo.parentNode.classList.contains('action')) combo.parentNode.classList.remove('action');
+function searchSubmit(e) {
+  e.preventDefault();
+  if (!dynamic && !started) {
+    const value = searchInit(e);
+    if (value) {
+      searchXhr(value);
+    }
+  }
+}
+
+function searchInit(e) {
+  const phrase = combo.value.trimStart();
+  combo.value = phrase;
+  if (phrase) wrapper.classList.add('action');
+  else wrapper.classList.remove('action', 'show');
+  return phrase;
+}
+
+function searchXhr(word) {
+  xhr.open('GET', 'https://dummyjson.com/products/search?q=' + word + '&limit=5&delay=1000', true);
+  xhr.send();
 }
 
 function addListeners(xhr) {
@@ -39,8 +56,8 @@ function addListeners(xhr) {
 
 function requestStart(e) {
   started = true;
-  combo.parentNode.classList.add('loading');
-  combo.parentNode.classList.remove('show');
+  wrapper.classList.add('loading');
+  wrapper.classList.remove('show');
 }
 
 function requestProcess(e) {
@@ -48,7 +65,6 @@ function requestProcess(e) {
     output.textContent = '';
     if (xhr.status === 200) {
       const response = JSON.parse(xhr.responseText);
-
       if (response.total) {
         response.products.forEach((item) => {
           const line = document.createElement('div');
@@ -80,13 +96,13 @@ function requestProcess(e) {
       line.append(lineContent);
       output.append(line);
     }
+    wrapper.classList.add('show');
   }
 }
 
 function requestEnd(e) {
   started = false;
-  combo.parentNode.classList.remove('loading');
-  combo.parentNode.classList.add('show');
+  wrapper.classList.remove('loading');
 }
 
 function requestError(e) {
