@@ -57,25 +57,27 @@ p {
 
 #menu > ul > li {
   display: flex;
-  align-items: center;
-  margin-left: 15px;
-  padding: 2px 15px;
+  margin: 0 15px;
 }
 
 #menu > ul > li:not(.has-submenu) {
   margin-right: 15px;
 }
 
-#menu > ul > li a {
+#menu > ul > li > a {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 16px;
   color: #333;
   text-transform: lowercase;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: 0 15px;
+  position: relative;
 }
 
 #menu > ul > li:last-child {
-  margin: 0;
   margin-left: auto;
 }
 
@@ -84,15 +86,15 @@ p {
   font-size: 14px;
   color: #fff;
   text-transform: uppercase;
-  margin: 10px 0;
+  margin: 12px 0;
   padding: 10px 20px;
   border-radius: 5px;
   background-color: #ff4242;
   display: block;
 }
 
-#menu > ul > li.has-submenu span.arrow {
-  display: inline-block;
+#menu > ul > li.has-submenu > a:before {
+  display: block;
   width: 16px;
   height: 7px;
   margin-left: 10px;
@@ -104,29 +106,19 @@ p {
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
-  text-indent: 100%;
+  content: '';
 }
 
-#menu > ul > li.has-submenu.active span.arrow {
+#menu > ul > li.has-submenu:hover > a:before,
+#menu > ul > li.has-submenu.active > a:before {
   --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 7'%3E%3Cpath fill='%23000' d='M12.5 6a.47.47 0 0 1-.35-.15L8 1.71L3.85 5.85c-.2.2-.51.2-.71 0c-.2-.2-.2-.51 0-.71L7.65.65c.2-.2.51-.2.71 0l4.5 4.5c.2.2.2.51 0 .71c-.1.1-.23.15-.35.15Z'/%3E%3C/svg%3E");
 }
 
-#menu > ul > li.has-submenu.active span.marker {
-  display: block;
-}
-
-#menu > ul > li.has-submenu span.marker {
-  height: 13px;
-  position: absolute;
-  width: 100%;
-  top: calc(100% - 3px);
-  left: 160px;
-  text-indent: -100%;
-  z-index: 999;
+#menu > ul > li.has-submenu > a:after {
   display: none;
 }
 
-#menu > ul > li.has-submenu span.marker:after {
+#menu > ul > li.has-submenu:hover > a:after {
   width: 28px;
   height: 28px;
   background: #f4f4f4;
@@ -134,20 +126,21 @@ p {
   content: '';
   display: block;
   position: absolute;
-  left: 30px;
-  top: 10px;
+  left: 28px;
+  top: calc(100% + 7px);
 }
 
-#menu > ul > li.has-submenu.active ul.submenu {
+#menu > ul > li.has-submenu > ul {
+  display: none;
+}
+
+#menu.is-hover > ul > li.has-submenu:hover > ul,
+#menu > ul > li.has-submenu.active > ul {
   display: flex;
-}
-
-#menu ul.submenu {
   position: absolute;
   top: calc(100% + 10px);
   left: 0;
   width: 100%;
-  display: none;
   column-gap: 115px;
   padding: 30px 0;
   background-color: #f4f4f4;
@@ -155,31 +148,42 @@ p {
   z-index: 999;
 }
 
-#menu ul.submenu > li:first-child {
+#menu.is-hover > ul > li.has-submenu:hover > ul:before,
+#menu > ul > li.has-submenu.active > ul:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 13px;
+  position: absolute;
+  top: -13px;
+  left: 0;
+}
+
+#menu > ul > li.has-submenu > ul > li:first-child {
   padding-left: 30px;
 }
 
-#menu ul.submenu a {
+#menu > ul > li.has-submenu > ul a {
   font-family: 'Inter', sans-serif;
   color: #000;
   text-transform: none;
 }
 
-#menu ul.submenu > li > a {
+#menu > ul > li.has-submenu > ul > li > a {
   font-weight: 500;
   font-size: 15px;
   margin-bottom: 10px;
 }
 
-#menu ul.submenu > li ul {
+#menu > ul > li.has-submenu > ul > li ul {
   margin-top: 10px;
 }
 
-#menu ul.submenu > li ul li {
-  line-height: 1.2;
+#menu > ul > li.has-submenu > ul > li ul li {
+  line-height: 1.3;
 }
 
-#menu ul.submenu > li ul li a {
+#menu > ul > li.has-submenu > ul > li ul li a {
   font-weight: 400;
   font-size: 13px;
 }
